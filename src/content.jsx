@@ -1,20 +1,18 @@
 
-console.log("content.jsx =====>");
+import React from "react";
+import ReactDOM from "react-dom/client";
+import ContentApp from "./components/ContentApp";
 
 
-// const root = document.createElement("div");
-// root.id = "crx-root";
-// document.body.appendChild(root);
 
-// ReactDOM.createRoot(root).render(
-//     <React.StrictMode>
-//         <App />
-//     </React.StrictMode>
-// );
+const root = document.createElement("div");
+root.id = "crx-root";
+document.body.appendChild(root);
 
-const localStorage = window.localStorage;
-    console.log('[ localStorage ] >', localStorage)
-window.onload = () =>  {
-    const localStorage = window.localStorage;
-    console.log('[ localStorage ] >', localStorage)
-}
+
+ReactDOM.createRoot(root).render(
+    <React.StrictMode>
+        <ContentApp />
+    </React.StrictMode>
+
+);

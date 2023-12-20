@@ -57,8 +57,7 @@ class TokenInfo {
     // 复制当前 Token 信息到剪贴板
     static copyCurrentTokenInfoToClipboard() {
         const tokenInfo = TokenInfo.getCurrentTokenInfo();
-        const tokenInfoInstance = new TokenInfo(tokenInfo);
-        tokenInfoInstance.copyScriptToClipboard();
+        copyTextToClipboard(JSON.stringify(tokenInfo));
     }
 }
 
