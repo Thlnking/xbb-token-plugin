@@ -9,34 +9,45 @@ const contentAppStyles = stylex.create({
         lineHeight: 1.5,
         color: 'rgb(60,60,60)',
         backgroundColor: 'white',
-        width: '520px',
-        height: '55px',
-        marginLeft: "-260px",
-        zIndex: 1000,
+        width: '510px',
+        height: '45px',
+        marginLeft: "-255px",
+        zIndex: 99999,
         borderRadius: '0 0 15px 15px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease-in-out',
         ":after": {
             content: '""',
             position: 'absolute',
-            borderLeftColor: 'transparent',
-            borderLeftWidth: '15px',
-            borderLeftStyle: 'solid',
-            bottom: '-12px',
-            width: 0,
-            height: 0,
-            borderRight: '15px solid transparent',
-            borderTopWidth: '12px',
-            borderTopStyle: 'solid',
-            borderTopColor: '#a8e4f1',
+            bottom: '-20px',
+            width: '25px',
+            height: '20px',
+            background: 'linear-gradient(to bottom, #48cae4, #caf0f8)',
+            clipPath: 'polygon(51% 46%, 0 0, 100% 0)'
         }
     },
-    lineGradient: {
-        background: 'linear-gradient(to bottom, #48cae4, #a8e4f1)',
+    fold: {
+        top: '-45px'
     },
-    highlighted: {
-        color: 'rebeccapurple',
+    unfold: {
+        top: '0px'
+    },
+    lineGradient: {
+        background: 'linear-gradient(to bottom, #00b4d8, #48cae4)',
+    },
+
+
+    box: {
+        width: '100%',
+        height: '100%',
+        zIndex: 99999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'all 0.2s ease-in-out',
     },
 });
 
