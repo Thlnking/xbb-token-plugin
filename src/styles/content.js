@@ -35,6 +35,13 @@ const contentAppStyles = stylex.create({
     unfold: {
         top: '0px'
     },
+    transparentBg: {
+        background: 'transparent'
+    },
+    gradientButton: {
+        background: 'linear-gradient(to bottom, #00b4d8, #48cae4) !important',
+        color: 'white !important',
+    },
     lineGradient: {
         background: 'linear-gradient(to bottom, #00b4d8, #48cae4)',
     },

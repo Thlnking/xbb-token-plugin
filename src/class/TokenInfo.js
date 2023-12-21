@@ -33,9 +33,13 @@ class TokenInfo {
     }
 
 
-    // 复制 tokenInfo 到剪贴板
-    copyScriptToClipboard() {
-        const script = this.generateSetScript();
+
+    // 复制 当前登录信息 登录脚本 到剪贴板
+    static copyScriptToClipboard() {
+        const tokenInfo = new TokenInfo({
+            ...TokenInfo.getCurrentTokenInfo()
+        });
+        const script = tokenInfo.generateSetScript();
         copyTextToClipboard(script);
     }
 
