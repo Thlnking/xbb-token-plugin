@@ -12,8 +12,10 @@
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
     "@stylexjs/stylex": "^0.3.0",
+    "ace-builds": "^1.32.2",
     "framer-motion": "^10.16.16",
     "react": "^18.2.0",
+    "react-ace": "^10.1.0",
     "react-dom": "^18.2.0",
     "vite-plugin-stylex": "^0.4.0"
   },
