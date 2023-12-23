@@ -18,7 +18,8 @@ ace.config.setModuleUrl('ace/mode/javascript_worker', workerJavascriptUrl);
 
 const TokenInput = () => {
 
-    const [isFollowed, setIsFollowed] = useState(false);
+
+    const [validate, setValidate] = useState(true)
 
     useEffect(() => {
         console.log('[ ace ] >', ace)
@@ -62,14 +63,42 @@ const TokenInput = () => {
                         </Button>
                     </ButtonGroup>
                 </CardHeader> */}
-                <CardBody className="px-4 py-0 h-56 text-small text-default-400">
+                <CardBody className="px-0 py-0 h-56 text-small text-default-400">
+                    <div>
+                        <ButtonGroup className="w-full ">
+                            <Button
+                                className="text-tiny text-white bg-black/10 w-6/12"
+                                variant="flat"
+                                color="default"
+                                radius="none"
+                                size="sm"
+                                disabled={!validate}
+                            >
+                                保存
+                            </Button>
+                            <Button className="text-tiny text-white bg-black/10 w-6/12"
+                                variant="flat"
+                                color="default"
+                                radius="none"
+                                size="sm"
+                            >
+                                使用
+                            </Button>
+                        </ButtonGroup>
+                    </div>
                     <AceEditor
-                        value="{}"
+                        width="100%"
+                        height="100%"
                         mode="json"
                         theme="tomorrow"
-                        onChange={(value) => {
-                            console.log('[ value ] >', value)
+                        onChange={(value, event) => {
+                            console.log('[ value ] >', value, event)
                         }}
+                        onValidate={(annotations) => {
+                            console.log('[ annotations ] >', annotations)
+                            setValidate(annotations.length === 0)
+                        }}
+
                         name="token-json-edit"
                         editorProps={{ $blockScrolling: true }}
                         fontSize={14}
@@ -82,8 +111,9 @@ const TokenInput = () => {
                             enableLiveAutocompletion: true
                         }}
                     />
+
                 </CardBody>
-            </Card>
+            </Card >
         </>
     )
 }

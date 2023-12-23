@@ -2,10 +2,9 @@ import * as stylex from '@stylexjs/stylex';
 import './App.css'
 
 import { appStyles } from "./styles/app";
-import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
-import CurrentToken from './components/CurrentToken';
-import TokenInput from './components/TokenInput';
-
+import { Tabs, Tab, } from "@nextui-org/react";
+import CurrentTokenTab from './components/CurrentTokenTab';
+import TokenDBTab from './components/TokenDBTab';
 
 
 function App() {
@@ -21,14 +20,13 @@ function App() {
       >
         <Tabs variant='underlined' aria-label="Options" color='default'>
           <Tab key="token_operate" title="当前 Token">
-            <CurrentToken />
-            <TokenInput />
+            <CurrentTokenTab />
           </Tab>
           <Tab key="token_db" title="Token 库">
-
+            <TokenDBTab />
           </Tab>
         </Tabs>
-      </div>
+      </div >
     </>
 
   )
