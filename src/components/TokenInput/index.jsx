@@ -63,7 +63,7 @@ const TokenInput = () => {
                         </Button>
                     </ButtonGroup>
                 </CardHeader> */}
-                <CardBody className="px-0 py-0 h-56 text-small text-default-400">
+                <CardBody className="px-0 py-0 h-60 text-small text-default-400">
                     <div>
                         <ButtonGroup className="w-full ">
                             <Button

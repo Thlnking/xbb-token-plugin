@@ -19,10 +19,10 @@ function App() {
         }
       >
         <Tabs variant='underlined' aria-label="Options" color='default'>
-          <Tab key="token_operate" title="当前 Token">
+          <Tab className="py-0 " key="token_operate" title="当前 Token">
             <CurrentTokenTab />
           </Tab>
-          <Tab key="token_db" title="Token 库">
+          <Tab className="py-0" key="token_db" title="Token 库">
             <TokenDBTab />
           </Tab>
         </Tabs>
