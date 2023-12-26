@@ -5,6 +5,12 @@ import { appStyles } from "./styles/app";
 import { Tabs, Tab, } from "@nextui-org/react";
 import CurrentTokenTab from './components/CurrentTokenTab';
 import TokenDBTab from './components/TokenDBTab';
+import TokenDBManager from './class/TokenDBManager';
+
+
+
+const tokenDBManager = new TokenDBManager()
+
 
 
 function App() {

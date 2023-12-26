@@ -46,11 +46,18 @@ class TokenInfo {
     // 获取当前 Token 信息
     static getCurrentTokenInfo() {
         const keysToRetrieve = ['corpName', 'corpid', 'env', 'location', 'locationKey', 'userId', 'userName', 'xbbAccessToken'];
+
+        const location = window.location.origin;
+        const locationKey = window.location.host;
         const storedInfo = {};
 
         keysToRetrieve.forEach((key) => {
             const value = localStorage.getItem(key);
-            if (value !== null) {
+            if (key === 'location') {
+                storedInfo[key] = location;
+            } else if (key === 'locationKey') {
+                storedInfo[key] = locationKey;
+            } else if (value !== null) {
                 storedInfo[key] = value;
             }
         });

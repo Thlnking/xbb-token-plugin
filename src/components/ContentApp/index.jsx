@@ -4,30 +4,37 @@ import { useState } from 'react';
 import { Button, ButtonGroup } from "@nextui-org/react";
 import TokenInfo from '/src/class/TokenInfo';
 import './style.css';
+import MessageSender from '../../class/MessageSender';
 
 console.log('[ stylex, contentAppStyles ] >', stylex, contentAppStyles)
 
-
+const message = new MessageSender('content');
 
 const buttonGroup = [
     {
         label: '提取Token到剪贴板',
         func: () => {
             TokenInfo.copyCurrentTokenInfoToClipboard();
-            console.log('[ 提取Token到剪贴板 ] >')
         }
     },
     {
         label: '生成登录脚本到剪贴板',
         func: () => {
             TokenInfo.copyScriptToClipboard();
-            console.log('[ 生成登录脚本到剪贴板 ] >')
         }
     },
     {
         label: '保存当前Token',
         func: () => {
-            console.log('[ 保存当前Token ] >', TokenInfo.getCurrentTokenInfo())
+            setInterval(() => {
+                console.log('[ 保存当前Token ] >', TokenInfo.getCurrentTokenInfo())
+                message.send({
+                    user: 'content',
+                    action: 'saveToken',
+                    data: TokenInfo.getCurrentTokenInfo()
+                });
+
+            }, 1000)
         }
     },
 ]
@@ -39,7 +46,6 @@ const ContentApp = () => {
     const [fold, setFold] = useState(false);
 
     const boxClick = (e) => {
-        console.log('[ e ] >', e)
         e.stopPropagation();
         setFold(!fold);
     }
