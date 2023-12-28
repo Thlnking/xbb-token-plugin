@@ -2,8 +2,11 @@
 import { useSpring, animated } from '@react-spring/web'
 
 
-const TokenDBTab = () => {
 
+
+const TokenDBTab = ({
+    allToken
+}) => {
     const springs = useSpring({
         from: { x: -80 },
         to: { x: 0 },
@@ -20,7 +23,18 @@ const TokenDBTab = () => {
                 }
             }
         >
-            <div>TokenDBTab</div>
+            <div
+
+            >
+                {
+                    allToken.length
+                }
+                {
+                    JSON.stringify(allToken)
+                }
+            </div>
+
+
         </animated.div>
     )
 }

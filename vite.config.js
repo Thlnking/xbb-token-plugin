@@ -12,4 +12,9 @@ export default defineConfig({
     styleX(),
     crx({ manifest }),
   ],
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
 })
