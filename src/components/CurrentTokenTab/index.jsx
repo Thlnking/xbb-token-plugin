@@ -6,7 +6,9 @@ import TokenInput from '../TokenInput'
 console.log('[ useSpring, animated ] >', useSpring, animated.div)
 
 
-const CurrentTokenTab = () => {
+const CurrentTokenTab = ({
+    currentToken
+}) => {
 
     const springs = useSpring({
         from: { x: -80 },
@@ -29,7 +31,7 @@ const CurrentTokenTab = () => {
                 }
             }
         >
-            <CurrentToken />
+            <CurrentToken currentToken={currentToken} />
             <TokenInput />
         </animated.div>
     )

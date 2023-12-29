@@ -18,7 +18,6 @@ ace.config.setModuleUrl('ace/mode/javascript_worker', workerJavascriptUrl);
 
 
 
-
 const TokenInput = () => {
 
     const isJson = (str) => {
