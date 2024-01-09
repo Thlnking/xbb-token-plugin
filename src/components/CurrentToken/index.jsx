@@ -10,6 +10,7 @@ const CurrentToken = (
     { currentToken }
 ) => {
 
+
     const [isFollowed, setIsFollowed] = useState(false);
 
     return (
@@ -23,8 +24,10 @@ const CurrentToken = (
                 <CardHeader className="justify-between">
                     <div className="flex gap-5">
                         <div className="flex flex-col gap-1 items-start justify-center">
-                            <h4 className="text-small font-semibold leading-none text-default-600">{currentToken.userName}</h4>
-                            <h5 className="text-small tracking-tight text-default-400">@zoeylang</h5>
+                            <h4 className="text-small font-semibold leading-none text-default-600">{currentToken?.userName}</h4>
+                            <h5 className="text-small tracking-tight text-default-400">{
+                                JSON.stringify(currentToken)
+                            }</h5>
                         </div>
                     </div>
                     <ButtonGroup>

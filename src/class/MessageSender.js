@@ -12,6 +12,12 @@ const popupOnMessage = (request, tokenDBManager, callback) => {
                 tokenDBManager.saveToken(data, callback);
             }
             callback && callback();
+        } else if (action === 'setCurrentToken') {
+            if (data.xbbAccessToken) {
+                console.log('%c [ data ]-17', 'font-size:13px; background:pink; color:#bf2c9f;', data)
+                // 保存当前页面的 token
+                tokenDBManager.setCurrentToken(data, callback);
+            }
         }
     }
 }
@@ -21,6 +27,16 @@ const popupOnMessage = (request, tokenDBManager, callback) => {
 const contentOnMessage = (request, sender, sendResponse) => {
     if (request && request.user === 'popup') {
         console.log('%c [ request, sender, sendResponse ]-35', 'font-size:13px; background:pink; color:#bf2c9f;', request, sender, sendResponse)
+        const { action } = request;
+
+        if (action === 'getCurrentToken') {
+            const tokenDBManager = new TokenDBManager();
+            const currentToken = tokenDBManager.getCurrentToken();
+            sendResponse({
+                action: 'setCurrentToken',
+                data: currentToken,
+            });
+        }
     }
 }
 

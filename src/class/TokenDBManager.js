@@ -33,6 +33,14 @@ class TokenDBManager {
 
     }
 
+
+    setCurrentToken(data, callback) {
+        if (data) {
+            localStorage.setItem('currentToken', JSON.stringify(data));
+            callback && callback();
+        }
+    }
+
     getTokenList() {
         return this.db.allTokens;
     }

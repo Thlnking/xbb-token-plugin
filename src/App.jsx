@@ -19,9 +19,28 @@ function App() {
   const [tokenDBManager, setTokenDBManager] = useState(null)
   const [allToken, setAllToken] = useState([])
 
+  const [currentToken, setCurrentToken] = useState(null)
+
+
+  const getCurrentToken = useCallback(() => {
+    if (messageSender) {
+      messageSender.send({
+        user: 'popup',
+        action: 'getCurrentToken',
+        data: null
+      })
+    }
+  }, [messageSender])
+
   useEffect(() => {
     setMessageSender(new MessageSender('popup'))
   }, [])
+
+
+  useEffect(() => {
+    setCurrentToken(JSON.parse(localStorage.getItem('currentToken') || '{}'))
+    getCurrentToken()
+  }, [getCurrentToken])
 
   useEffect(() => {
     setTokenDBManager(messageSender?.tokenDBManager)
@@ -50,7 +69,7 @@ function App() {
       >
         <Tabs variant='underlined' aria-label="Options" color='default'>
           <Tab className="py-0 " key="token_operate" title="当前 Token">
-            <CurrentTokenTab />
+            <CurrentTokenTab currentToken={currentToken} />
           </Tab>
           <Tab className="py-0" key="token_db" title="Token 库">
             <TokenDBTab key={allToken.length} allToken={allToken} />

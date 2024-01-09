@@ -5,6 +5,7 @@ import { Button, ButtonGroup } from "@nextui-org/react";
 import TokenInfo from '/src/class/TokenInfo';
 import './style.css';
 import MessageSender from '../../class/MessageSender';
+import { useEffect } from 'react';
 
 console.log('[ stylex, contentAppStyles ] >', stylex, contentAppStyles)
 
@@ -41,6 +42,8 @@ const buttonGroup = [
 
 
 
+
+
 const ContentApp = () => {
 
     const [fold, setFold] = useState(false);
@@ -49,6 +52,16 @@ const ContentApp = () => {
         e.stopPropagation();
         setFold(!fold);
     }
+
+    useEffect(() => {
+        message.send({
+            user: 'content',
+            action: 'currentToken',
+            data: TokenInfo.getCurrentTokenInfo() || '没有获取到 token'
+        });
+
+        console.log('%c [  TokenInfo.getCurrentTokenInfo() ]-63', 'font-size:13px; background:pink; color:#bf2c9f;', TokenInfo.getCurrentTokenInfo())
+    }, [])
 
 
     return (
