@@ -36,11 +36,20 @@ function App() {
     setMessageSender(new MessageSender('popup'))
   }, [])
 
+  useEffect(() => {
+    setCurrentToken({
+      useName: '获取中'
+    })
+  }, [])
+
 
   useEffect(() => {
-    setCurrentToken(JSON.parse(localStorage.getItem('currentToken') || '{}'))
     getCurrentToken()
-  }, [getCurrentToken])
+    setTimeout(() => {
+      setCurrentToken(JSON.parse(localStorage.getItem('currentToken') || '{}'))
+    }
+      , 1000)
+  }, [getCurrentToken, messageSender])
 
   useEffect(() => {
     setTokenDBManager(messageSender?.tokenDBManager)

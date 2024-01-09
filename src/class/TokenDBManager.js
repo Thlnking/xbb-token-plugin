@@ -34,7 +34,7 @@ class TokenDBManager {
     }
 
 
-    setCurrentToken(data, callback) {
+    static setCurrentToken(data, callback) {
         if (data) {
             localStorage.setItem('currentToken', JSON.stringify(data));
             callback && callback();

@@ -27,15 +27,12 @@ const buttonGroup = [
     {
         label: '保存当前Token',
         func: () => {
-            setInterval(() => {
-                console.log('[ 保存当前Token ] >', TokenInfo.getCurrentTokenInfo())
-                message.send({
-                    user: 'content',
-                    action: 'saveToken',
-                    data: TokenInfo.getCurrentTokenInfo()
-                });
-
-            }, 1000)
+            console.log('[ 保存当前Token ] >', TokenInfo.getCurrentTokenInfo())
+            message.send({
+                user: 'content',
+                action: 'saveToken',
+                data: TokenInfo.getCurrentTokenInfo()
+            });
         }
     },
 ]

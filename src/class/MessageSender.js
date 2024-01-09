@@ -1,4 +1,5 @@
 import TokenDBManager from '@/class/TokenDBManager';
+import TokenInfo from './TokenInfo';
 const popupOnMessage = (request, tokenDBManager, callback) => {
     if (request && request.user === 'content') {
 
@@ -12,12 +13,6 @@ const popupOnMessage = (request, tokenDBManager, callback) => {
                 tokenDBManager.saveToken(data, callback);
             }
             callback && callback();
-        } else if (action === 'setCurrentToken') {
-            if (data.xbbAccessToken) {
-                console.log('%c [ data ]-17', 'font-size:13px; background:pink; color:#bf2c9f;', data)
-                // 保存当前页面的 token
-                tokenDBManager.setCurrentToken(data, callback);
-            }
         }
     }
 }
@@ -30,8 +25,7 @@ const contentOnMessage = (request, sender, sendResponse) => {
         const { action } = request;
 
         if (action === 'getCurrentToken') {
-            const tokenDBManager = new TokenDBManager();
-            const currentToken = tokenDBManager.getCurrentToken();
+            const currentToken = TokenInfo.getCurrentTokenInfo();
             sendResponse({
                 action: 'setCurrentToken',
                 data: currentToken,
@@ -61,13 +55,24 @@ class MessageSender {
 
 
     contentToPopup(message) {
-        chrome.runtime.sendMessage(message, this.contentOnMessage);
+        chrome.runtime.sendMessage(message, this.contentOnMessage, (response) => {
+            console.log('%c [ response ]-63', 'font-size:13px; background:pink; color:#bf2c9f;', response)
+        });
     }
 
 
     popupToContent(message) {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, message, this.popupOnMessage);
+            chrome.tabs.sendMessage(tabs[0].id, message, this.popupOnMessage, (response) => {
+
+
+                if (response && response.action === 'setCurrentToken') {
+                    const { data } = response;
+
+                    TokenDBManager.setCurrentToken(data);
+                }
+                console.log('%c [ response ]-72', 'font-size:13px; background:pink; color:#bf2c9f;', response)
+            });
         });
     }
 
