@@ -1,7 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 import { contentAppStyles } from '/src/styles/content';
 import { useState } from 'react';
-import { Button, ButtonGroup } from "@nextui-org/react";
 import TokenInfo from '/src/class/TokenInfo';
 import MessageSender from '../../class/MessageSender';
 import { useEffect } from 'react';
@@ -27,11 +26,13 @@ const buttonGroup = [
         label: '保存当前Token',
         func: () => {
             console.log('[ 保存当前Token ] >', TokenInfo.getCurrentTokenInfo())
-            message.send({
-                user: 'content',
-                action: 'saveToken',
-                data: TokenInfo.getCurrentTokenInfo()
-            });
+            setTimeout(() => {
+                message.send({
+                    user: 'content',
+                    action: 'saveToken',
+                    data: TokenInfo.getCurrentTokenInfo()
+                });
+            }, 3000)
         }
     },
 ]

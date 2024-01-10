@@ -1,10 +1,15 @@
 import TokenDBManager from '@/class/TokenDBManager';
 import TokenInfo from './TokenInfo';
 const popupOnMessage = (request, tokenDBManager, callback) => {
+    setTimeout(() => {
+        console.log('%c [ request ]-8', 'font-size:13px; background:pink; color:#bf2c9f;', request)
+    }, 3000)
     if (request && request.user === 'content') {
 
         // 获取到的数据
         const { action, data } = request;
+        console.log('%c [ request ]-8', 'font-size:13px; background:pink; color:#bf2c9f;', request)
+
         // 通过 action 来判断需要做什么操作
         if (action === 'saveToken') {
             // 保存 token
@@ -55,9 +60,9 @@ class MessageSender {
 
 
     contentToPopup(message) {
-        chrome.runtime.sendMessage(message, this.contentOnMessage, (response) => {
-            console.log('%c [ response ]-63', 'font-size:13px; background:pink; color:#bf2c9f;', response)
-        });
+        console.log('%c [ message ]-60', 'font-size:13px; background:pink; color:#bf2c9f;', message)
+
+        chrome.runtime.sendMessage(message, this.contentOnMessage);
     }
 
 

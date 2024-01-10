@@ -11,7 +11,7 @@ const contentAppStyles = stylex.create({
         backgroundColor: 'white',
         width: '510px',
         height: '45px',
-        marginLeft: "-255px",
+        marginLeft: "-255px !important",
         zIndex: 99999,
         borderRadius: '0 0 15px 15px',
         display: 'flex',
