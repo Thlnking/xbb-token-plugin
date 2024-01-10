@@ -18,7 +18,7 @@ const contentAppStyles = stylex.create({
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        transition: 'all 0.2s ease-in-out',
+        transition: 'all 0.3s ease-in-out',
         ":after": {
             content: '""',
             position: 'absolute',
@@ -38,9 +38,25 @@ const contentAppStyles = stylex.create({
     transparentBg: {
         background: 'transparent'
     },
+    gradientButtonGroup: {
+        background: ' #00b4d8',
+        border: 'none !important',
+        borderRadius: '23px !important',
+    },
+
     gradientButton: {
-        background: 'linear-gradient(to bottom, #00b4d8, #48cae4) !important',
         color: 'white !important',
+        width: '170px',
+        background: 'transparent !important',
+        height: '35px !important',
+        border: 'none !important',
+        cursor: 'pointer',
+        borderRadius: '23px !important',
+        transition: 'all 0.5s',
+        ":hover": {
+            background: '#00b4ac !important',
+            color: '#ffffff !important',
+        }
     },
     lineGradient: {
         background: 'linear-gradient(to bottom, #00b4d8, #48cae4)',

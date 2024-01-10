@@ -3,7 +3,6 @@ import { contentAppStyles } from '/src/styles/content';
 import { useState } from 'react';
 import { Button, ButtonGroup } from "@nextui-org/react";
 import TokenInfo from '/src/class/TokenInfo';
-import './style.css';
 import MessageSender from '../../class/MessageSender';
 import { useEffect } from 'react';
 
@@ -72,20 +71,21 @@ const ContentApp = () => {
                 }}
                 {...stylex.props(contentAppStyles.box,)}
             >
-                <ButtonGroup
+                <div
+                    {...stylex.props(contentAppStyles.gradientButtonGroup)}
                 >
                     {
                         buttonGroup.map((item, index) => {
                             return (
-                                <Button
+                                <button
                                     key={index}
                                     {...stylex.props(contentAppStyles.gradientButton)}
                                     onClick={item.func}
-                                >{item.label}</Button>
+                                >{item.label}</button>
                             )
                         })
                     }
-                </ButtonGroup>
+                </div>
 
             </div>
         </div >
