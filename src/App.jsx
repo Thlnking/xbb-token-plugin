@@ -9,6 +9,7 @@ import TokenDBTab from './components/TokenDBTab';
 
 import MessageSender from '@/class/MessageSender';
 import { useCallback } from 'react';
+import TokenDBManager from './class/TokenDBManager';
 
 
 
@@ -16,7 +17,6 @@ import { useCallback } from 'react';
 function App() {
 
   const [messageSender, setMessageSender] = useState(null)
-  const [tokenDBManager, setTokenDBManager] = useState(null)
   const [allToken, setAllToken] = useState([])
 
   const [currentToken, setCurrentToken] = useState(null)
@@ -31,6 +31,19 @@ function App() {
       })
     }
   }, [messageSender])
+
+
+  const setPageToken = useCallback((token) => {
+    if (messageSender) {
+      messageSender.send({
+        user: 'popup',
+        action: 'setPageToken',
+        data: token
+      })
+    }
+  }, [messageSender])
+
+
 
   useEffect(() => {
     setMessageSender(new MessageSender('popup'))
@@ -51,13 +64,14 @@ function App() {
       , 1000)
   }, [getCurrentToken, messageSender])
 
-  useEffect(() => {
-    setTokenDBManager(messageSender?.tokenDBManager)
-  }, [messageSender])
 
   const refreshAllToken = useCallback(() => {
-    setAllToken([...(tokenDBManager?.getTokenList() || [])])
-  }, [tokenDBManager])
+    const tokenDb = new TokenDBManager()
+    setAllToken([...(tokenDb?.getTokenList() || [])])
+  }, [])
+
+
+
 
   useEffect(() => {
     refreshAllToken()
@@ -78,10 +92,14 @@ function App() {
       >
         <Tabs variant='underlined' aria-label="Options" color='default'>
           <Tab className="py-0 " key="token_operate" title="当前 Token">
-            <CurrentTokenTab currentToken={currentToken} />
+            <CurrentTokenTab currentToken={currentToken} refreshAllToken={refreshAllToken} setInputToken={setPageToken} />
           </Tab>
-          <Tab className="py-0" key="token_db" title="Token 库">
-            <TokenDBTab key={allToken.length} allToken={allToken} />
+          <Tab className="py-0 " key="token_db" title={
+            <span>Token库 </span>
+          }>
+            <div className='overflow-scroll h-[340px] '>
+              <TokenDBTab key={allToken.length} allToken={allToken} refreshAllToken={refreshAllToken} setToken={setPageToken} />
+            </div>
           </Tab>
         </Tabs>
       </div >

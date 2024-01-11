@@ -3,9 +3,16 @@ import { useState } from "react";
 
 import { Button, ButtonGroup } from "@nextui-org/react";
 import TokenCard from "../TokenCard";
+import TokenDBManager from "../../class/TokenDBManager";
 
 
-const ActionButtonGroup = ({ token }) => {
+const saveCurrentToken = (token) => {
+    console.log('[ saveCurrentToken ] >', token)
+    const tokenDbManager = new TokenDBManager();
+    tokenDbManager.saveToken(token);
+}
+
+const ActionButtonGroup = ({ token, saveCurrentTokenCallback }) => {
 
     const [isFollowed, setIsFollowed] = useState(false);
     return (
@@ -21,7 +28,10 @@ const ActionButtonGroup = ({ token }) => {
                 复制
             </Button>
             <Button
-                onPress={() => setIsFollowed(!isFollowed)}
+                onClick={() => {
+                    saveCurrentToken(token);
+                    saveCurrentTokenCallback();
+                }}
                 className="text-tiny text-white bg-black/10"
                 variant="flat"
                 color="default"
@@ -35,12 +45,11 @@ const ActionButtonGroup = ({ token }) => {
 }
 
 
-const CurrentToken = ({ currentToken }) => {
-
+const CurrentToken = ({ currentToken, refreshAllToken }) => {
     return (
         <>
             <TokenCard token={currentToken} actionComponent={
-                <ActionButtonGroup token={currentToken} />
+                <ActionButtonGroup token={currentToken} saveCurrentTokenCallback={refreshAllToken} />
             } />
         </>
     )

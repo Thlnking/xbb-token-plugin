@@ -35,6 +35,16 @@ const contentOnMessage = (request, sender, sendResponse) => {
                 action: 'setCurrentToken',
                 data: currentToken,
             });
+        } else if (action === 'setPageToken') {
+            const { data } = request;
+            Object
+                .entries(data)
+                .forEach(
+                    ([key, value]) => {
+                        localStorage.setItem(key, value);
+                        console.log('localStorage Setting ' + [key] + ' to', value);
+                    })
+            window.location.href = window.location.origin + '/#/app/home';
         }
     }
 }

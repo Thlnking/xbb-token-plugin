@@ -1,36 +1,60 @@
 
 import { useSpring, animated } from '@react-spring/web'
+import { useState } from 'react'
 
 import { Button, ButtonGroup } from "@nextui-org/react";
 import TokenCard from '../TokenCard'
+import TokenInfo from '../../class/TokenInfo';
+import TokenDBManager from '../../class/TokenDBManager';
+import SearchInput from './SearchInput';
 
 
 
-const ActionButtonGroup = ({ token }) => {
+const ActionButtonGroup = ({ token, deleteTokenCallback, setToken }) => {
     return (
         <ButtonGroup>
             <Button
-                onPress={() => { }}
+                onClick={() => {
+                    TokenInfo.copyTokenInfoToClipboard(token);
+                }}
                 className="text-tiny text-white bg-black/10"
                 variant="flat"
                 color="default"
                 radius="lg"
                 size="sm"
             >
-                复制{token?.userName}
+                Token
             </Button>
             <Button
-                onPress={() => { }}
+                onClick={() => {
+                    TokenInfo.copyTokenScriptToClipboard(token);
+                }}
                 className="text-tiny text-white bg-black/10"
                 variant="flat"
                 color="default"
                 radius="lg"
                 size="sm"
             >
-                保存
+                脚本
             </Button>
             <Button
-                onPress={() => { }}
+                onClick={() => {
+                    setToken(token)
+                }}
+                className="text-tiny text-white bg-black/10"
+                variant="flat"
+                color="default"
+                radius="lg"
+                size="sm"
+            >
+                使用
+            </Button>
+            <Button
+                onClick={() => {
+                    const tokenDbManager = new TokenDBManager();
+                    tokenDbManager.deleteToken(token);
+                    deleteTokenCallback();
+                }}
                 className="text-tiny text-white bg-black/10"
                 variant="flat"
                 color="default"
@@ -46,8 +70,13 @@ const ActionButtonGroup = ({ token }) => {
 
 
 const TokenDBTab = ({
-    allToken
+    allToken,
+    refreshAllToken,
+    setToken
 }) => {
+
+    const [searchKey, setSearchKey] = useState('')
+
     const springs = useSpring({
         from: { x: -80 },
         to: { x: 0 },
@@ -64,14 +93,21 @@ const TokenDBTab = ({
                 }
             }
         >
-            <div
-
-            >
+            <div>
+                <SearchInput onValueChange={
+                    (value) => {
+                        console.log('%c [ allToken ]-99', 'font-size:13px; background:pink; color:#bf2c9f;', allToken, value)
+                        setSearchKey(value)
+                    }
+                } />
                 {
-                    allToken.map((token, index) => {
+                    allToken.filter(item => {
+                        console.log('%c [ item ]-104', 'font-size:13px; background:pink; color:#bf2c9f;', item)
+                        return item.corpName && item.corpName.includes(searchKey.replaceAll(/\s+/g, ''))
+                    }).map((token, index) => {
                         return (
                             <TokenCard key={index} token={token} actionComponent={
-                                <ActionButtonGroup token={token} />
+                                <ActionButtonGroup setToken={setToken} token={token} deleteTokenCallback={refreshAllToken} />
                             } />
                         )
                     }

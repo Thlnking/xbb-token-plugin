@@ -18,7 +18,10 @@ ace.config.setModuleUrl('ace/mode/javascript_worker', workerJavascriptUrl);
 
 
 
-const TokenInput = () => {
+const TokenInput = ({
+    saveToken,
+    setInputToken
+}) => {
 
     const isJson = (str) => {
         try {
@@ -54,6 +57,11 @@ const TokenInput = () => {
                                 radius="none"
                                 size="sm"
                                 disabled={!validate}
+                                onClick={() => {
+                                    if (isJson(inputValue) && JSON.parse(inputValue).xbbAccessToken) {
+                                        saveToken(JSON.parse(inputValue))
+                                    }
+                                }}
                             >
                                 保存
                             </Button>
@@ -62,6 +70,15 @@ const TokenInput = () => {
                                 color="default"
                                 radius="none"
                                 size="sm"
+                                onClick={
+                                    () => {
+
+                                        console.log('%c [ isJson(inputValue) && inputValue.xbbAccessToken ]-76', 'font-size:13px; background:pink; color:#bf2c9f;', isJson(inputValue) && inputValue.xbbAccessToken)
+                                        if (isJson(inputValue) && JSON.parse(inputValue).xbbAccessToken) {
+                                            setInputToken(JSON.parse(inputValue))
+                                        }
+                                    }
+                                }
                             >
                                 使用
                             </Button>

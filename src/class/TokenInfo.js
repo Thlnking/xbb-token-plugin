@@ -28,7 +28,7 @@ class TokenInfo {
     generateSetScript(storageType = "localStorage") {
         const script = `Object.entries(${JSON.stringify(
             this
-        )}).forEach(([key, value]) => {${storageType}.setItem(key, value); console.log('${storageType} Setting '+[key]+' to', value);})`;
+        )}).forEach(([key, value]) => {${storageType}.setItem(key, value); console.log('${storageType} Setting '+[key]+' to', value);});  window.location.href = window.location.origin + '/#/app/home'`;
         return script;
     }
 
@@ -42,6 +42,8 @@ class TokenInfo {
         const script = tokenInfo.generateSetScript();
         copyTextToClipboard(script);
     }
+
+
 
     // 获取当前 Token 信息
     static getCurrentTokenInfo() {
@@ -69,6 +71,20 @@ class TokenInfo {
     static copyCurrentTokenInfoToClipboard() {
         const tokenInfo = TokenInfo.getCurrentTokenInfo();
         copyTextToClipboard(JSON.stringify(tokenInfo));
+    }
+
+
+    // 复制指定的 Token 信息到剪贴板
+    static copyTokenInfoToClipboard(tokenInfo) {
+        copyTextToClipboard(JSON.stringify(tokenInfo));
+    }
+
+    // 复制指定的 Token 登录脚本到剪贴板
+    static copyTokenScriptToClipboard(tokenInfo) {
+        const script = new TokenInfo({
+            ...tokenInfo
+        }).generateSetScript();
+        copyTextToClipboard(script);
     }
 }
 

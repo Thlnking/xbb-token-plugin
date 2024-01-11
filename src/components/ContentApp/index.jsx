@@ -17,24 +17,24 @@ const buttonGroup = [
         }
     },
     {
-        label: '生成登录脚本到剪贴板',
+        label: '复制脚本到剪贴板',
         func: () => {
             TokenInfo.copyScriptToClipboard();
         }
     },
-    {
-        label: '保存当前Token',
-        func: () => {
-            console.log('[ 保存当前Token ] >', TokenInfo.getCurrentTokenInfo())
-            setTimeout(() => {
-                message.send({
-                    user: 'content',
-                    action: 'saveToken',
-                    data: TokenInfo.getCurrentTokenInfo()
-                });
-            }, 3000)
-        }
-    },
+    // {
+    //     label: '保存当前Token',
+    //     func: () => {
+    //         console.log('[ 保存当前Token ] >', TokenInfo.getCurrentTokenInfo())
+    //         setTimeout(() => {
+    //             message.send({
+    //                 user: 'content',
+    //                 action: 'saveToken',
+    //                 data: TokenInfo.getCurrentTokenInfo()
+    //             });
+    //         }, 3000)
+    //     }
+    // },
 ]
 
 
