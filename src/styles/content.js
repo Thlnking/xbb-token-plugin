@@ -8,7 +8,7 @@ const contentAppStyles = stylex.create({
         fontSize: 16,
         lineHeight: 1.5,
         color: 'rgb(60,60,60)',
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
         width: '510px',
         height: '45px',
         marginLeft: "-255px !important",
