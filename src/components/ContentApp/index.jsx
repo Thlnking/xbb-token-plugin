@@ -43,7 +43,7 @@ const buttonGroup = [
 
 const ContentApp = () => {
 
-    const [fold, setFold] = useState(false);
+    const [fold, setFold] = useState(true);
 
     const boxClick = (e) => {
         e.stopPropagation();
