@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, ButtonGroup } from "@nextui-org/react";
 import TokenCard from "../TokenCard";
 import TokenDBManager from "../../class/TokenDBManager";
+import TokenInfo from "../../class/TokenInfo.js";
 
 
 const saveCurrentToken = (token) => {
@@ -12,7 +13,11 @@ const saveCurrentToken = (token) => {
     tokenDbManager.saveToken(token);
 }
 
-const ActionButtonGroup = ({ token, saveCurrentTokenCallback }) => {
+const copyCurrentToken = (token) => {
+    TokenInfo.copyTokenInfoToClipboard(token);
+}
+
+const ActionButtonGroup = ({ token, saveCurrentTokenCallback, copyCurrentTokenCallback }) => {
 
     const [isFollowed, setIsFollowed] = useState(false);
     return (
@@ -24,6 +29,12 @@ const ActionButtonGroup = ({ token, saveCurrentTokenCallback }) => {
                 color="default"
                 radius="lg"
                 size="sm"
+                onClick={
+                    () => {
+                        copyCurrentToken(token)
+                        copyCurrentTokenCallback()
+                    }
+                }
             >
                 复制
             </Button>
