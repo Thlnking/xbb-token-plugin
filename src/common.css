@@ -4,17 +4,16 @@
     @tailwind components;
     @tailwind utilities;
 
-    position: fixed;
-    top: 50%;
-    right: 0;
-    z-index: 99999;
+    position: static;
+    top: 0;
+    left: 50%;
     font-size: 16px;
     line-height: 1.5;
     color: rgb(60,60,60);
     background-color: transparent;
     width: 510px;
-    height: 46px;
-    translate: transformY(-23px);
+    height: 45px;
+    margin-left: -255px;
     border-radius: 0 0 15px 15px;
     display: flex;
     align-items: center;

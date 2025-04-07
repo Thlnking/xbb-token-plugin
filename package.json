@@ -21,7 +21,7 @@
     "vite-plugin-stylex": "^0.4.0"
   },
   "devDependencies": {
-    "@crxjs/vite-plugin": "2.0.0-beta.32",
+    "@crxjs/vite-plugin": "2.0.0-beta.21",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
