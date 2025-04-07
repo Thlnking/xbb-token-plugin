@@ -1,7 +1,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import ContentApp from "./components/ContentApp";
+// import ContentApp from "./components/ContentApp";
 import "./common.css";
 
 
@@ -12,7 +12,7 @@ document.body.appendChild(root);
 
 ReactDOM.createRoot(root).render(
     <React.StrictMode>
-        <ContentApp />
+        {/* <ContentApp /> */}
     </React.StrictMode>
 
 );
