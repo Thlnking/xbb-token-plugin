@@ -1,11 +1,8 @@
-import * as stylex from '@stylexjs/stylex';
-import { contentAppStyles } from '/src/styles/content';
+import styles from '/src/styles/content.module.css';
 import { useState } from 'react';
 import TokenInfo from '/src/class/TokenInfo';
 import MessageSender from '../../class/MessageSender';
 import { useEffect } from 'react';
-
-console.log('[ stylex, contentAppStyles ] >', stylex, contentAppStyles)
 
 const message = new MessageSender('content');
 
@@ -64,23 +61,23 @@ const ContentApp = () => {
     return (
         <div
             onClick={boxClick}
-            {...stylex.props(contentAppStyles.container, contentAppStyles.transparentBg, fold ? contentAppStyles.fold : contentAppStyles.unfold)}
+            className={`${styles.container} ${styles.transparentBg} ${fold ? styles.fold : styles.unfold}`}
         >
             <div
                 onClick={(e) => {
                     e.stopPropagation();
                 }}
-                {...stylex.props(contentAppStyles.box,)}
+                className={styles.box}
             >
                 <div
-                    {...stylex.props(contentAppStyles.gradientButtonGroup)}
+                    className={styles.gradientButtonGroup}
                 >
                     {
                         buttonGroup.map((item, index) => {
                             return (
                                 <button
                                     key={index}
-                                    {...stylex.props(contentAppStyles.gradientButton)}
+                                    className={styles.gradientButton}
                                     onClick={item.func}
                                 >{item.label}</button>
                             )

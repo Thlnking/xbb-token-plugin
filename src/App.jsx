@@ -1,8 +1,7 @@
-import * as stylex from '@stylexjs/stylex';
 import './App.css'
 
 import { useEffect, useState } from 'react';
-import { appStyles } from "./styles/app";
+import styles from "./styles/app.module.css";
 import { Tabs, Tab, } from "@nextui-org/react";
 import CurrentTokenTab from './components/CurrentTokenTab';
 import TokenDBTab from './components/TokenDBTab';
@@ -84,11 +83,7 @@ function App() {
   return (
     <>
       <div
-        {
-        ...stylex.props(
-          appStyles.wrap,
-        )
-        }
+        className={styles.wrap}
       >
         <Tabs variant='underlined' aria-label="Options" color='default'>
           <Tab className="py-0 " key="token_operate" title="当前 Token">

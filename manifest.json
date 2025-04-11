@@ -4,12 +4,12 @@
     "version": "1.0.0",
     "action": { "default_popup": "index.html",
 
-    "default_icon": {
-        "16": "src/assets/crx-logo/logo.png",
-        "32": "src/assets/crx-logo/logo.png",
-        "48": "src/assets/crx-logo/logo.png",
-        "128": "src/assets/crx-logo/logo.png"
-        } 
+        "default_icon": {
+            "16": "src/assets/crx-logo/logo.png",
+            "32": "src/assets/crx-logo/logo.png",
+            "48": "src/assets/crx-logo/logo.png",
+            "128": "src/assets/crx-logo/logo.png"
+        }
     },
     "icons": {
         "16": "src/assets/crx-logo/logo.png",
@@ -19,8 +19,8 @@
     },
     "content_scripts": [
         {
-            "js": ["src/content.jsx"],
-            "matches": ["<all_urls>"]
+            "js": [ "src/content.jsx" ],
+            "matches": [ "<all_urls>" ]
         }
     ]
 }

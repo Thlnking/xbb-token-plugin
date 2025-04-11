@@ -2,8 +2,7 @@
 import { useState } from "react";
 
 import { Card, CardBody, Button, ButtonGroup } from "@nextui-org/react";
-import { stylex } from "@stylexjs/stylex";
-import { cardStyles } from "./style";
+import styles from "./style.module.css";
 import AceEditor from "react-ace";
 import ace from "ace-builds";
 import workerJavascriptUrl from "ace-builds/src-noconflict/worker-javascript?url";
@@ -42,10 +41,7 @@ const TokenInput = ({
     return (
         <>
 
-            <Card className="max-w-[550px]"
-                {
-                ...stylex.props(cardStyles.card)
-                }
+            <Card className={`max-w-[550px] ${styles.card}`}
             >
                 <CardBody className="px-0 py-0 h-60 text-small text-default-400">
                     <div>

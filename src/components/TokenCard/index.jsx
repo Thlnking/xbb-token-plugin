@@ -1,16 +1,12 @@
 
 import { Card, CardHeader, CardBody, Chip } from "@nextui-org/react";
-import { stylex } from "@stylexjs/stylex";
-import { cardStyles } from "./style";
+import styles from "./style.module.css";
 
 
 const TokenCard = ({ token, actionComponent }) => {
     return (
         <>
-            <Card className="max-w-[550px]"
-                {
-                ...stylex.props(cardStyles.card)
-                }
+            <Card className={`max-w-[550px] ${styles.card}`}
             >
                 <CardHeader className="justify-between">
                     <div className="flex gap-5">
